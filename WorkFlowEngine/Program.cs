@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 namespace WorkFlowEngine {
     class Program {
         static void Main(string[] args) {
-            var workflow = new WorkFlow();
-            workflow.RegisterActivity(new UploadVideo());
-            workflow.RegisterActivity(new NotifyService());
-            workflow.RegisterActivity(new SendEmailToUser());
-            workflow.RegisterActivity(new ChangeVideoStatus());
-            workflow.Run();
+            var workFlowEngine = new WorkFlowEngine();
+            var EncodeVideos = new WorkFlow();
+
+            EncodeVideos.RegisterActivity(new UploadVideo());
+            EncodeVideos.RegisterActivity(new NotifyService());
+            EncodeVideos.RegisterActivity(new SendEmailToUser());
+            EncodeVideos.RegisterActivity(new ChangeVideoStatus());
+            
+            workFlowEngine.Run(EncodeVideos);
         }
     }
 }

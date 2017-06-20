@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WorkFlowEngine {
-    public class WorkFlow {
+    class WorkFlow : IWorkFlow {
 
-        private IList<IActivity> _Activity;
+        private readonly IList<IActivity> _Activties;
 
         public WorkFlow() {
-            _Activity = new List<IActivity>();
+            _Activties = new List<IActivity>();
         }
 
-        public void Run() {
+        public void DeRegisterActivity(IActivity Activity) {
+            _Activties.Remove(Activity);
+        }
 
-            foreach (var Activity in _Activity) {
-                Activity.Execute();
-            }
-
+        public IEnumerable<IActivity> GetActivities() {
+            return _Activties;
         }
 
         public void RegisterActivity(IActivity Activity) {
-            _Activity.Add(Activity);
+            _Activties.Add(Activity);
 
         }
+
     }
 }
